@@ -1,16 +1,11 @@
 ---
 title: Connect to MySQL HeatWave on AWS via Public Endpoint from OCI Compute Instance
-parent:
-- tutorials
-tags: 
-- mysql
-- database
-- heatwave
-categories:
-- cloudapps
+parent: [tutorials]
+tags: [mysql,database,heatwave]
+categories: [cloudapps]
 thumbnail: assets/a-mysqglhw-devrel0622-thmb001.png
 date: 2022-10-08 17:00
-description: Wiring up our OCI Compute Instance to the MySQL HeatWave on AWS instance for analytics.
+description: "Wiring up our OCI Compute Instance to the MySQL HeatWave on AWS instance for analytics."
 author: Victor Agreda
 mrm: WWMK220224P00058
 ---

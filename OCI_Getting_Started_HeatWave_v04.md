@@ -1,17 +1,11 @@
 ---
 title: Getting Started with MySQL HeatWave for AWS on OCI
-parent:
-	- tutorials
-tags: 
-	- mysql
-	- database
-	- heatwave
-	- oci
-categories:
-	- cloudapps
+parent: [tutorials]
+tags: [mysql, database, heatwave, oci, ]
+categories: [cloudapps]
 thumbnail: assets/a-mysqglhw-devrel0622-thmb001.png
 date: 2022-10-08 17:00
-description: Getting your OCI tenancy ready to connect to MySQL HeatWave on AWS. We will create a compute instance, DB System, and endpoint. We also provision MySQL HeatWave on AWS.
+description: "Getting your OCI tenancy ready to connect to MySQL HeatWave on AWS. We will create a compute instance, DB System, and endpoint. We also provision MySQL HeatWave on AWS."
 author: Victor Agreda
 mrm: WWMK220224P00058
 

@@ -1,14 +1,8 @@
 ---
 title: Getting Started with MySQL HeatWave for AWS on AWS
-parent:
-	- tutorials
-tags: 
-	- mysql
-	- database
-	- heatwave
-	- aws
-categories:
-	- cloudapps
+parent: [tutorials]
+tags: [mysql,database,heatwave,aws]
+categories: [cloudapps]
 thumbnail: assets/a-mysqglhw-devrel0622-thmb001.png
 date: 2022-10-08 17:00
 description: Setting up on AWS to connect to MySQL HeatWave on AWS. We'll create a database and endpoint. We also provision MySQL HeatWave on AWS.
@@ -137,12 +131,12 @@ Basically we'll lean on the "easy mode" in AWS to create a compute instance, net
 	Navigate your browser to http://cloud.mysql.com/.
 
 	Click Sign Up.
+
 	A field is displayed for entering your email address. Once you enter your email, you are directed to an Account Information page for creating an Oracle Cloud account, which is required to use MySQL HeatWave on AWS. Once you verify your email you'll go to a page for verifying the email address and providing initial account information. Follow the prompts.
 
 	After providing the initial account information, you are directed to a Get Started page in the Oracle Cloud Infrastructure (OCI) Console, which includes an Enable MySQL HeatWave on AWS link in the Quickstarts section of the page. Click Enable MySQL HeatWave on AWS.
 
-	You are directed to a MySQL HeatWave on AWS Administration page where you are presented with
-	a dialog that guides you through the setup process. Note that a paid account is required. Once your upgrade is complete you'll wind up on the OCI Console.
+	You are directed to a MySQL HeatWave on AWS Administration page where you are presented with a dialog that guides you through the setup process. Note that a paid account is required. Once your upgrade is complete you'll wind up on the OCI Console.
 
 	From the OCI Console navigation menu, select Databases. MySQL HeatWave on AWS appears on the Home tab under the Featured label.
 
@@ -155,7 +149,6 @@ Basically we'll lean on the "easy mode" in AWS to create a compute instance, net
 ### Summary - So far!
 
 Thus far we've created a MySQL database on AWS and activated an OCI account and MySQL HeatWave on AWS using our shiny new Oracle account. Using our login for our database, we can use this tool to run queries impossibly fast -- and we're just getting started!
-
 
 Want to know more? Join the discussion in our [public Slack channel](https://bit.ly/odevrel_slack)!
 
