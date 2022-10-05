@@ -26,11 +26,11 @@ Above, we see the Workspaces tab in the Console, having just run a query. While 
 
 {% imgx assets/hw_performance_monitoring-devrel0622.png %}
 
-Here’s the good stuff! Not only can you see performance per node, you can see the size of the dataset, the data dictionary, and if you click on Workload on the left side, you’ll see duration each step of the query took, and when queries have taken place.  
+Here’s the good stuff! Not only can you see performance per node, you can see the size of the dataset, the data dictionary, and if you click on _Workload_ on the left side, you’ll see how long each step of the query took and when queries took place.
 
 {% imgx assets/hw_performance_monitoring_03-devrel0622.png %}
 
-Clicking back on Cluster and scrolling down, we can see metrics related to the VM itself, including memory and connection usage, CPU, and so on. If you’re keen on squeezing every drop of performance that you can out of HeatWave on AWS, we got you.  
+Clicking back on _Cluster_ and scrolling down, we can see metrics related to the VM itself, including memory and connection usage, CPU, and so on. If you’re keen on squeezing every drop of performance that you can out of HeatWave on AWS, we got you.
 
 {% imgx assets/hw_performance_monitoring_02-devrel0622.png %}
 

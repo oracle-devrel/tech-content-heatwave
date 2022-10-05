@@ -9,7 +9,7 @@ description: "Wiring up our OCI Compute Instance to the MySQL HeatWave on AWS in
 author: Victor Agreda
 mrm: WWMK220224P00058
 ---
-Once we've created a database on OCI and set up our virtual private network with a way to connect (using access lists), we can pretty easily wire it up to MySQL HeatWave on AWS.
+Once we've created a database on OCI and set up our virtual private network with a way to connect (using access lists), we can easily wire it up to MySQL HeatWave on AWS.
 
 1. Create a MySQL database on OCI, allow public access
 2. Log into MySQL HeatWave on AWS
