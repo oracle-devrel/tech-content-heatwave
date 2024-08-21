@@ -3,11 +3,11 @@
 [![License: UPL](https://img.shields.io/badge/license-UPL-green)](https://img.shields.io/badge/license-UPL-green)
 
 * [Answering Health-Related Questions Using HeatWave with Vector Store](healthcare/)
-* [Getting Started with MySQL HeatWave for AWS on OCI](OCI_Getting_Started_HeatWave_v04.md)
+<!-- * [Getting Started with MySQL HeatWave for AWS on OCI](OCI_Getting_Started_HeatWave_v04.md)
 * [Connect to MySQL HeatWave on AWS via Public Endpoint from OCI Compute](OCI-connect-hw-public-endpoint-devrel0922.md)
 * [Getting Started with MySQL HeatWave for AWS on AWS](AWS_Getting_Started_Heatwave_v02.md)
 * [Connecting To and Managing HeatWave on AWS](connecting-managing-heatwave-aws-devrel0622.md)
-* [HeatWave on AWS Metrics and Performance Tools](metrics-and-performance-hw-aws-devrel0622.md)
+* [HeatWave on AWS Metrics and Performance Tools](metrics-and-performance-hw-aws-devrel0622.md) -->
 
 ## Contributing
 
