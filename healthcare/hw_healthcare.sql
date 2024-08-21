@@ -1,3 +1,7 @@
+-- Copyright (c) 2024 Oracle and/or its affiliates.
+-- Licensed under the Universal Permissive License (UPL), Version 1.0.
+
+
 DELIMITER //
 
 CREATE PROCEDURE get_unique_document_names()
