@@ -2,9 +2,10 @@
 
 [![License: UPL](https://img.shields.io/badge/license-UPL-green)](https://img.shields.io/badge/license-UPL-green) [![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=oracle-devrel_tech-content-heatwave)](https://sonarcloud.io/dashboard?id=oracle-devrel_tech-content-heatwave)
 
-## This repository demonstrates how to use HeatWave GenAI to build a Healthcare question-and-answer tool quickly and efficiently. With just a few steps, you can leverage HeatWave GenAI to create a tool for answering health-related questions based on custom documents.
+> This repository demonstrates how to use HeatWave GenAI to build a Healthcare question-and-answer tool quickly and efficiently. With just a few steps, you can leverage HeatWave GenAI to create a tool for answering health-related questions based on custom documents.
 
 ## Introduction
+
 HeatWave GenAI allows you to perform natural language queries on unstructured data using a familiar SQL interface. This capability streamlines tasks such as content generation, summarization, and retrieval-augmented generation (RAG). It supports seamless one-step searches using in-database or external LLMs, with all components optimized for integration with proprietary data.
 In this repository, we focus on using HeatWave GenAI to create a healthcare tool that answers questions based on documents ingested into the HeatWave vector store. For more information about HeatWave GenAI, visit the [official documentation](https://dev.mysql.com/doc/heatwave/en/mys-hw-genai-overview.html).
 
@@ -15,6 +16,7 @@ In this repository, we focus on using HeatWave GenAI to create a healthcare tool
 **HeatWave-Enabled Database System**: Ensure you have a database system with HeatWave enabled. Refer to the [Getting Started with MySQL HeatWave on OCI]( https://www.oracle.com/developer/getting-started-with-mysql-heatwave-on-oci/) guide for setup instructions.
 
 ### Steps
+
 1. **Clone the Repository**:
    ```bash
    git clone https://github.com/oracle-devrel/tech-content-heatwave.git
@@ -69,9 +71,11 @@ The UI with an example question:
 </p>
 
 ## Contributing
+
 This project is open source.  Please submit your contributions by forking this repository and submitting a pull request!  Oracle appreciates any contributions that are made by the open source community.
 
 ## License
+
 Copyright (c) 2024 Oracle and/or its affiliates.
 
 Licensed under the Universal Permissive License (UPL), Version 1.0.
