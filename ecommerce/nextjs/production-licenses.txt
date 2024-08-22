@@ -1,0 +1,161 @@
+├─ @headlessui/react@1.7.19
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/tailwindlabs/headlessui
+│  ├─ path: ./node_modules/@headlessui/react
+│  └─ licenseFile: ./node_modules/@headlessui/react/README.md
+├─ @heroicons/react@2.1.3
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/tailwindlabs/heroicons
+│  ├─ path: ./node_modules/@heroicons/react
+│  └─ licenseFile: ./node_modules/@heroicons/react/LICENSE
+├─ @next/env@14.2.3
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/vercel/next.js
+│  ├─ publisher: Next.js Team
+│  ├─ email: support@vercel.com
+│  ├─ path: ./node_modules/@next/env
+│  └─ licenseFile: ./node_modules/@next/env/README.md
+├─ @next/swc-darwin-x64@14.2.3
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/vercel/next.js
+│  ├─ path: ./node_modules/@next/swc-darwin-x64
+│  └─ licenseFile: ./node_modules/@next/swc-darwin-x64/README.md
+├─ @swc/counter@0.1.3
+│  ├─ licenses: Apache-2.0
+│  ├─ repository: https://github.com/swc-project/pkgs
+│  ├─ publisher: 강동윤
+│  ├─ email: kdy1997.dev@gmail.com
+│  ├─ path: ./node_modules/@swc/counter
+│  └─ licenseFile: ./node_modules/@swc/counter/README.md
+├─ @swc/helpers@0.5.5
+│  ├─ licenses: Apache-2.0
+│  ├─ repository: https://github.com/swc-project/swc
+│  ├─ publisher: 강동윤
+│  ├─ email: kdy1997.dev@gmail.com
+│  ├─ path: ./node_modules/@swc/helpers
+│  └─ licenseFile: ./node_modules/@swc/helpers/LICENSE
+├─ @tanstack/react-virtual@3.5.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/tanstack/virtual
+│  ├─ publisher: Tanner Linsley
+│  ├─ path: ./node_modules/@tanstack/react-virtual
+│  └─ licenseFile: ./node_modules/@tanstack/react-virtual/LICENSE
+├─ @tanstack/virtual-core@3.5.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/tanstack/virtual
+│  ├─ publisher: Tanner Linsley
+│  ├─ path: ./node_modules/@tanstack/virtual-core
+│  └─ licenseFile: ./node_modules/@tanstack/virtual-core/LICENSE
+├─ busboy@1.6.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/mscdex/busboy
+│  ├─ publisher: Brian White
+│  ├─ email: mscdex@mscdex.net
+│  ├─ path: ./node_modules/busboy
+│  └─ licenseFile: ./node_modules/busboy/LICENSE
+├─ caniuse-lite@1.0.30001625
+│  ├─ licenses: CC-BY-4.0
+│  ├─ repository: https://github.com/browserslist/caniuse-lite
+│  ├─ publisher: Ben Briggs
+│  ├─ email: beneb.info@gmail.com
+│  ├─ path: ./node_modules/caniuse-lite
+│  └─ licenseFile: ./node_modules/caniuse-lite/LICENSE
+├─ client-only@0.0.1
+│  ├─ licenses: MIT
+│  └─ path: ./node_modules/client-only
+├─ clsx@2.1.1
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/lukeed/clsx
+│  ├─ publisher: Luke Edwards
+│  ├─ email: luke.edwards05@gmail.com
+│  ├─ path: ./node_modules/clsx
+│  └─ licenseFile: ./node_modules/clsx/license
+├─ geist@1.3.0
+│  ├─ licenses: MIT*
+│  ├─ repository: https://github.com/vercel/geist-font
+│  ├─ path: ./node_modules/geist
+│  └─ licenseFile: ./node_modules/geist/LICENSE.TXT
+├─ graceful-fs@4.2.11
+│  ├─ licenses: ISC
+│  ├─ repository: https://github.com/isaacs/node-graceful-fs
+│  ├─ path: ./node_modules/graceful-fs
+│  └─ licenseFile: ./node_modules/graceful-fs/LICENSE
+├─ js-tokens@4.0.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/lydell/js-tokens
+│  ├─ publisher: Simon Lydell
+│  ├─ path: ./node_modules/js-tokens
+│  └─ licenseFile: ./node_modules/js-tokens/LICENSE
+├─ loose-envify@1.4.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/zertosh/loose-envify
+│  ├─ publisher: Andres Suarez
+│  ├─ email: zertosh@gmail.com
+│  ├─ path: ./node_modules/loose-envify
+│  └─ licenseFile: ./node_modules/loose-envify/LICENSE
+├─ nanoid@3.3.7
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/ai/nanoid
+│  ├─ publisher: Andrey Sitnik
+│  ├─ email: andrey@sitnik.ru
+│  ├─ path: ./node_modules/nanoid
+│  └─ licenseFile: ./node_modules/nanoid/LICENSE
+├─ next@14.2.3
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/vercel/next.js
+│  ├─ path: ./node_modules/next
+│  └─ licenseFile: ./node_modules/next/license.md
+├─ picocolors@1.0.1
+│  ├─ licenses: ISC
+│  ├─ repository: https://github.com/alexeyraspopov/picocolors
+│  ├─ publisher: Alexey Raspopov
+│  ├─ path: ./node_modules/picocolors
+│  └─ licenseFile: ./node_modules/picocolors/LICENSE
+├─ postcss@8.4.31
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/postcss/postcss
+│  ├─ publisher: Andrey Sitnik
+│  ├─ email: andrey@sitnik.ru
+│  ├─ path: ./node_modules/next/node_modules/postcss
+│  └─ licenseFile: ./node_modules/next/node_modules/postcss/LICENSE
+├─ react-dom@18.2.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/facebook/react
+│  ├─ path: ./node_modules/react-dom
+│  └─ licenseFile: ./node_modules/react-dom/LICENSE
+├─ react@18.2.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/facebook/react
+│  ├─ path: ./node_modules/react
+│  └─ licenseFile: ./node_modules/react/LICENSE
+├─ scheduler@0.23.2
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/facebook/react
+│  ├─ path: ./node_modules/scheduler
+│  └─ licenseFile: ./node_modules/scheduler/LICENSE
+├─ source-map-js@1.2.0
+│  ├─ licenses: BSD-3-Clause
+│  ├─ repository: https://github.com/7rulnik/source-map-js
+│  ├─ publisher: Valentin 7rulnik Semirulnik
+│  ├─ email: v7rulnik@gmail.com
+│  ├─ path: ./node_modules/source-map-js
+│  └─ licenseFile: ./node_modules/source-map-js/LICENSE
+├─ streamsearch@1.1.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/mscdex/streamsearch
+│  ├─ publisher: Brian White
+│  ├─ email: mscdex@mscdex.net
+│  ├─ path: ./node_modules/streamsearch
+│  └─ licenseFile: ./node_modules/streamsearch/LICENSE
+├─ styled-jsx@5.1.1
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/vercel/styled-jsx
+│  ├─ path: ./node_modules/styled-jsx
+│  └─ licenseFile: ./node_modules/styled-jsx/license.md
+└─ tslib@2.6.2
+   ├─ licenses: 0BSD
+   ├─ repository: https://github.com/Microsoft/tslib
+   ├─ publisher: Microsoft Corp.
+   ├─ path: ./node_modules/tslib
+   └─ licenseFile: ./node_modules/tslib/LICENSE.txt
+

@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "productdetails",
+  "info": {
+    "singularName": "productdetail",
+    "pluralName": "productdetails",
+    "displayName": "Productdetail",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "language_code": {
+      "type": "string"
+    },
+    "size": {
+      "type": "string"
+    },
+    "material": {
+      "type": "string"
+    },
+    "washing_instructions": {
+      "type": "string"
+    },
+    "product": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::product.product",
+      "inversedBy": "productdetails"
+    },
+    "product_id": {
+      "type": "string"
+    }
+  }
+}

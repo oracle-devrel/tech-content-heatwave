@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "productcategories",
+  "info": {
+    "singularName": "productcategory",
+    "pluralName": "productcategories",
+    "displayName": "Productcategory",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "path": {
+      "type": "string"
+    }
+  }
+}
