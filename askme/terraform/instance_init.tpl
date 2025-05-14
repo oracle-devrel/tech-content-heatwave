@@ -6,8 +6,7 @@ set -e  # Exit script if any command fails
 
 REPO_URL="${REPO_URL}"
 REPO_SUBFOLDER="${REPO_SUBFOLDER}"
-# TODO: change to "main"
-REPO_BRANCH="tech-content-heatwave_askme"
+REPO_BRANCH="${REPO_MAIN}"
 
 # Set path constants
 INSTALL_LOGS="/tmp/askme_install.out"
@@ -49,6 +48,12 @@ echo "" >> $MAIN_SERVICE_FILEPATH
 echo "[Service]" >> $MAIN_SERVICE_FILEPATH
 echo 'Environment="OCI_COMPARTMENT_ID=${OCI_COMPARTMENT_ID}"' >> $MAIN_SERVICE_FILEPATH
 echo 'Environment="OCI_REGION=${OCI_REGION}"' >> $MAIN_SERVICE_FILEPATH
+echo 'Environment="BUCKET_NAME=${BUCKET_NAME}"' >> $MAIN_SERVICE_FILEPATH
+echo 'Environment="VAULT_ID=${VAULT_ID}"' >> $MAIN_SERVICE_FILEPATH
+echo 'Environment="IS_GENAI_REGION=${IS_GENAI_REGION}"' >> $MAIN_SERVICE_FILEPATH
+echo 'Environment="MYSQL_USERNAME_VAULT_SECRET_NAME=${MYSQL_USERNAME_VAULT_SECRET_NAME}"' >> $MAIN_SERVICE_FILEPATH
+echo 'Environment="MYSQL_PASSWORD_VAULT_SECRET_NAME=${MYSQL_PASSWORD_VAULT_SECRET_NAME}"' >> $MAIN_SERVICE_FILEPATH
+echo 'Environment="MYSQL_HOST_IP_VAULT_SECRET_NAME=${MYSQL_HOST_IP_VAULT_SECRET_NAME}"' >> $MAIN_SERVICE_FILEPATH
 echo "Restart=always" >> $MAIN_SERVICE_FILEPATH
 echo "RestartSec=30" >> $MAIN_SERVICE_FILEPATH
 echo "WorkingDirectory=$ASKME_FOLDER" >> $MAIN_SERVICE_FILEPATH
@@ -65,8 +70,16 @@ echo "" >> $SETUP_SERVICE_FILEPATH
 echo "[Service]" >> $SETUP_SERVICE_FILEPATH
 echo 'Environment="OCI_COMPARTMENT_ID=${OCI_COMPARTMENT_ID}"' >> $SETUP_SERVICE_FILEPATH
 echo 'Environment="OCI_REGION=${OCI_REGION}"' >> $SETUP_SERVICE_FILEPATH
+echo 'Environment="BUCKET_NAME=${BUCKET_NAME}"' >> $SETUP_SERVICE_FILEPATH
+echo 'Environment="VAULT_ID=${VAULT_ID}"' >> $SETUP_SERVICE_FILEPATH
+echo 'Environment="IS_GENAI_REGION=${IS_GENAI_REGION}"' >> $SETUP_SERVICE_FILEPATH
+echo 'Environment="MYSQL_USERNAME_VAULT_SECRET_NAME=${MYSQL_USERNAME_VAULT_SECRET_NAME}"' >> $SETUP_SERVICE_FILEPATH
+echo 'Environment="MYSQL_PASSWORD_VAULT_SECRET_NAME=${MYSQL_PASSWORD_VAULT_SECRET_NAME}"' >> $SETUP_SERVICE_FILEPATH
+echo 'Environment="MYSQL_HOST_IP_VAULT_SECRET_NAME=${MYSQL_HOST_IP_VAULT_SECRET_NAME}"' >> $SETUP_SERVICE_FILEPATH
 echo "Type=oneshot" >> $SETUP_SERVICE_FILEPATH
 echo "RemainAfterExit=yes" >> $SETUP_SERVICE_FILEPATH
+echo "Restart=on-failure" >> $SETUP_SERVICE_FILEPATH
+echo "RestartSec=30" >> $SETUP_SERVICE_FILEPATH
 echo "WorkingDirectory=$ASKME_FOLDER" >> $SETUP_SERVICE_FILEPATH
 echo "ExecStart=$ASKME_ENV_PATH/bin/python $SETUP_FILEPATH" >> $SETUP_SERVICE_FILEPATH
 echo "" >> $SETUP_SERVICE_FILEPATH
@@ -80,6 +93,12 @@ chown -R opc:opc $REPO_HOME_FOLDER >> $INSTALL_LOGS 2>&1
 /usr/bin/su - opc -c '
     echo "export OCI_COMPARTMENT_ID=${OCI_COMPARTMENT_ID}" >> ~/.bash_profile
     echo "export OCI_REGION=${OCI_REGION}" >> ~/.bash_profile
+    echo "export BUCKET_NAME=${BUCKET_NAME}" >> ~/.bash_profile
+    echo "export VAULT_ID=${VAULT_ID}" >> ~/.bash_profile
+    echo "export IS_GENAI_REGION=${IS_GENAI_REGION}" >> ~/.bash_profile
+    echo "export MYSQL_USERNAME_VAULT_SECRET_NAME=${MYSQL_USERNAME_VAULT_SECRET_NAME}" >> ~/.bash_profile
+    echo "export MYSQL_PASSWORD_VAULT_SECRET_NAME=${MYSQL_PASSWORD_VAULT_SECRET_NAME}" >> ~/.bash_profile
+    echo "export MYSQL_HOST_IP_VAULT_SECRET_NAME=${MYSQL_HOST_IP_VAULT_SECRET_NAME}" >> ~/.bash_profile
     source ~/.bash_profile
     # Session bus required for systemctl
     if [ -z "$XDG_RUNTIME_DIR" ]

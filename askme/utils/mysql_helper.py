@@ -33,11 +33,12 @@ def run_mysql_queries(query, conn=None, params=None):
     logger.debug(f"Running query: {query} with parameters: {params}")
     output = []
     try:
-        cursor = conn.cursor()
-        for cursor_result in cursor.execute(query, multi=True, params=params):
-            for row in cursor_result:
-                if len(row) > 0:
-                    output.append(row[0] if len(row) == 1 else row)
+        with conn.cursor() as cursor:
+            cursor.execute(query, params=params)
+            for _, result_set in cursor.fetchsets():
+                for row in result_set:
+                    if len(row) > 0:
+                        output.append(row[0] if len(row) == 1 else row)
         return output
     except Exception as e:
         logger.exception(e)

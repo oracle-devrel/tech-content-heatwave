@@ -2,11 +2,13 @@
 ## Licensed under the Universal Permissive License (UPL), Version 1.0.
 
 module "vcn" {
+    # Create 1 vcn if no public subnet or no private subnet is provided
+    count = local.public_vcn_subnet_ocid != null && local.private_vcn_subnet_ocid != null ? 0 : 1
     source = "oracle-terraform-modules/vcn/oci"
     version = "3.6.0"
     compartment_id = data.oci_identity_compartment.get_askme_compartment.id
     region = local.region
-    vcn_name = "${local.compartment_name}-vcn"
+    vcn_name = "${local.common_identifier}-vcn"
     create_internet_gateway = true
     create_nat_gateway = false
     create_service_gateway = false
@@ -14,9 +16,11 @@ module "vcn" {
 }
 
 resource "oci_core_security_list" "askme_public_security_list"{
+    # Create 1 public security list if no public subnet is provided
+    count = local.public_vcn_subnet_ocid != null ? 0 : 1
     compartment_id = data.oci_identity_compartment.get_askme_compartment.id
-    vcn_id = module.vcn.vcn_id
-    display_name = "${local.compartment_name}-security-list-for-public-subnet"
+    vcn_id = module.vcn[0].vcn_id
+    display_name = "${local.common_identifier}-security-list-for-public-subnet"
     egress_security_rules {
         stateless = false
         destination = "0.0.0.0/0"
@@ -61,19 +65,29 @@ resource "oci_core_security_list" "askme_public_security_list"{
 }
 
 resource "oci_core_subnet" "askme_vcn_public_subnet"{
+    # Create 1 public subnet if no public subnet is provided
+    count = local.public_vcn_subnet_ocid != null ? 0 : 1
     compartment_id = data.oci_identity_compartment.get_askme_compartment.id
-    vcn_id = module.vcn.vcn_id
+    vcn_id = module.vcn[0].vcn_id
     cidr_block = "10.0.0.0/24"
-    route_table_id = module.vcn.ig_route_id
-    security_list_ids = [oci_core_security_list.askme_public_security_list.id]
-    display_name = "${local.compartment_name}-public-subnet"
+    route_table_id = module.vcn[0].ig_route_id
+    security_list_ids = [oci_core_security_list.askme_public_security_list[0].id]
+    display_name = "${local.common_identifier}-public-subnet"
     freeform_tags = {"${local.resource_tag_key}"="${local.resource_tag_value}"}
 }
 
+data "oci_core_subnet" "get_askme_public_vcn_subnet" {
+    # Use public_vcn_subnet_ocid if public_vcn_subnet_ocid is provided,
+    # otherwise use id of the newly created public subnet
+    subnet_id = local.public_vcn_subnet_ocid != null ? local.public_vcn_subnet_ocid : oci_core_subnet.askme_vcn_public_subnet[0].id
+}
+
 resource "oci_core_security_list" "askme_private_security_list"{
+    # Create 1 private security list if no private subnet is provided
+    count = local.private_vcn_subnet_ocid != null ? 0 : 1
     compartment_id = data.oci_identity_compartment.get_askme_compartment.id
-    vcn_id = module.vcn.vcn_id
-    display_name = "${local.compartment_name}-security-list-for-private-subnet"
+    vcn_id = module.vcn[0].vcn_id
+    display_name = "${local.common_identifier}-security-list-for-private-subnet"
     egress_security_rules {
         stateless = false
         destination = "0.0.0.0/0"
@@ -140,11 +154,19 @@ resource "oci_core_security_list" "askme_private_security_list"{
 }
 
 resource "oci_core_subnet" "askme_vcn_private_subnet"{
+    # Create 1 private subnet if no private subnet is provided
+    count = local.private_vcn_subnet_ocid != null ? 0 : 1
     compartment_id = data.oci_identity_compartment.get_askme_compartment.id
-    vcn_id = module.vcn.vcn_id
+    vcn_id = module.vcn[0].vcn_id
     cidr_block = "10.0.1.0/24"
-    route_table_id = module.vcn.nat_route_id
-    security_list_ids = [oci_core_security_list.askme_private_security_list.id]
-    display_name = "${local.compartment_name}-private-subnet"
+    route_table_id = module.vcn[0].nat_route_id
+    security_list_ids = [oci_core_security_list.askme_private_security_list[0].id]
+    display_name = "${local.common_identifier}-private-subnet"
     freeform_tags = {"${local.resource_tag_key}"="${local.resource_tag_value}"}
+}
+
+data "oci_core_subnet" "get_askme_private_vcn_subnet" {
+    # Use private_vcn_subnet_ocid if private_vcn_subnet_ocid is provided,
+    # otherwise use id of the newly created private subnet
+    subnet_id = local.private_vcn_subnet_ocid != null ? local.private_vcn_subnet_ocid : oci_core_subnet.askme_vcn_private_subnet[0].id
 }

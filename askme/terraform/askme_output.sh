@@ -13,7 +13,10 @@ then
     echo "Please run the deployment instructions to create the resources."
 else
     echo "================================================"
-    echo "Open a terminal in your local computer, and run:"
+    echo "Open a terminal in your local computer."
+    echo "Follow the instructions to add your SSH key to the SSH agent:"
+    echo "  https://docs.oracle.com/en/operating-systems/oracle-linux/openssh/openssh-UsingOpenSSHClientUtilities.html#ssh-key-agent-to-remember-passphrases"
+    echo "And run:"
     echo "  ssh -L 8501:localhost:8501 opc@$public_ip"
     echo "Then in your web browser, open the URL:"
     echo "  127.0.0.1:8501"

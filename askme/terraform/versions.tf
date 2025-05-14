@@ -7,6 +7,10 @@ terraform {
       source  = "oracle/oci"
       version = ">=4.67.3"
     }
+    time = {
+      source  = "hashicorp/time"
+      version = ">=0.13.1"
+    }
   }
   required_version = ">= 1.0.0"
 }

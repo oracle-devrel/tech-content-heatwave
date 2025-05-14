@@ -2,13 +2,13 @@
 # Licensed under the Universal Permissive License (UPL), Version 1.0.
 
 from utils.mysql_helper import mysql_connect, run_mysql_queries
-from utils.oci_helper import REGION_ID, get_db_credentials, get_namespace, get_askme_bucket_name, upload_object_store_bytes, delete_object_store_folder
+from utils.oci_helper import REGION_ID, BUCKET_NAME, IS_GENAI_REGION, get_db_credentials, get_namespace, upload_object_store_bytes, delete_object_store_folder
 import json
 from contextlib import closing
 import re
 import os
 from utils.exceptions import AskMEException, BackendConnectionException , UnknownException
-from constants import ANSWER_SUMMARY_PROMPT, SUMMARY_MAX_PROMPT_SIZE, DEFAULT_EMPTY_VECTOR_TABLE_NAME, DEFAULT_ASKME_SCHEMA_NAME, HEATWAVE_MANUALS_VECTOR_TABLE_NAME
+from constants import ANSWER_SUMMARY_PROMPT, SUMMARY_MAX_PROMPT_SIZE, DEFAULT_EMPTY_VECTOR_TABLE_NAME, DEFAULT_ASKME_SCHEMA_NAME, HEATWAVE_MANUALS_VECTOR_TABLE_NAME, DEFAULT_EMBEDDING_MODEL, DEFAULT_OCI_GENAI_MODEL, DEFAULT_IN_HW_MODEL
 from utils.util import setup_logging
 logger = setup_logging()
 
@@ -40,19 +40,29 @@ def get_table_list(schema_name):
         tables = run_mysql_queries(query, conn, params)
     return tables
 
-def get_llm_list(schema):
-    conn = get_connection(schema)
+def get_llm_list():
+    conn = get_connection()
     with closing(conn):
+        # Return all models if GenAI region, otherwise return the in-HW LLMs
         query = f"""
-            SELECT model_name FROM sys.ML_SUPPORTED_LLMS WHERE model_type = 'generation';
+            SELECT model_id
+            FROM sys.ML_SUPPORTED_LLMS
+            WHERE JSON_CONTAINS(capabilities, '"GENERATION"')
+              AND IF(%s, TRUE, provider <=> "HeatWave");
         """
-        llms = run_mysql_queries(query, conn)
+        params = (IS_GENAI_REGION,)
+        llms = run_mysql_queries(query, conn, params)
     return llms
 
+def get_default_llm_list():
+    if IS_GENAI_REGION:
+        return DEFAULT_OCI_GENAI_MODEL
+    else:
+        return DEFAULT_IN_HW_MODEL
+
 def upload_files_oci(files, bucket_dir_name):
-    bucket_name = get_askme_bucket_name()
     for file in files:
-        upload_object_store_bytes(file.getvalue(), file.name, bucket_name, bucket_dir_name)
+        upload_object_store_bytes(file.getvalue(), file.name, bucket_dir_name)
 
 def filename_to_mysql_table_name(filename):
     table_name = re.sub(r'[^a-zA-Z0-9]+', '_', filename).strip('_')
@@ -64,7 +74,6 @@ def create_vector_store(schema_name, table_name, bucket_dir_name):
     conn = get_connection(schema_name=None)
     table_name = filename_to_mysql_table_name(table_name)
     with closing(conn):
-        bucket_name = get_askme_bucket_name()
         namespace = get_namespace()
         input_data = [
             {
@@ -75,12 +84,13 @@ def create_vector_store(schema_name, table_name, bucket_dir_name):
                         "engine_attribute": {
                             "dialect": {
                                 "format": "auto_unstructured",
-                                "is_strict_mode": False
+                                "is_strict_mode": False,
+                                "embed_model_id": DEFAULT_EMBEDDING_MODEL
                             },
                             "file": [
                                 {
                                     "pattern": f"{bucket_dir_name.rstrip('/')}/.*",
-                                    "bucket": bucket_name,
+                                    "bucket": BUCKET_NAME,
                                     "region": REGION_ID,
                                     "namespace": namespace
                                 }
@@ -127,8 +137,6 @@ def askme_generate_answer(conn, question, selected_model_id, model_list, schema,
         SELECT JSON_UNQUOTE(JSON_EXTRACT(@output, '$.text')) AS answer;
     """
     params = (question, options_json)
-
-    response = run_mysql_queries(query, conn, params)
 
     logger.info(f"Running the query: {query}")
     response = run_mysql_queries(query, conn, params)
@@ -288,7 +296,7 @@ def get_chat_history_for_current_session(conn):
     else:
         return []
 
-def search_similar_chunks(conn, user_query, schema_name, table_names, topk, num_chunks_before, num_chunks_after, min_similarity_score=0.0, distance_metric='COSINE', embedding_model_id='all_minilm_l12_v2'):
+def search_similar_chunks(conn, user_query, schema_name, table_names, topk, num_chunks_before, num_chunks_after, min_similarity_score=0.0, distance_metric='COSINE', embedding_model_id=DEFAULT_EMBEDDING_MODEL):
     """
     Searches for similar documents across multiple tables.
 
@@ -302,7 +310,7 @@ def search_similar_chunks(conn, user_query, schema_name, table_names, topk, num_
     - num_chunks_after: Number of chunks after the matched chunk to include.
     - min_similarity_score: Minimum similarity score required (default=0.0).
     - distance_metric: Distance metric used for similarity calculation (default='COSINE').
-    - embedding_model_id: ID of the embedding model to use (default='all_minilm_l12_v2').
+    - embedding_model_id: ID of the embedding model to use (default=DEFAULT_EMBEDDING_MODEL).
 
     Returns:
     A list of dictionaries containing information about the similar documents found.
@@ -411,12 +419,11 @@ def group_relevant_chunks_by_url(relevant_chunks):
 
 def cleanup_vector_table_materials(schema, table_list, bucket_folder_to_delete_prefix):
     conn = get_connection()
-    bucket_name = get_askme_bucket_name()
     for table in table_list:
         if table not in [DEFAULT_EMPTY_VECTOR_TABLE_NAME, HEATWAVE_MANUALS_VECTOR_TABLE_NAME]:
             response = delete_table_from_database(schema, table)
             logger.info(f"{schema}.{table} deletion: {response}")
             bucket_folder_to_delete = f"{bucket_folder_to_delete_prefix}{table}"
-            delete_object_store_folder(bucket_name, bucket_folder_to_delete)
+            delete_object_store_folder(bucket_folder_to_delete)
             logger.info(f"{bucket_folder_to_delete} deletion is done.")
 

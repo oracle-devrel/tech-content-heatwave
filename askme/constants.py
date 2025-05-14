@@ -20,7 +20,9 @@ RETRIEVAL_NUM_CHUNKS_BEFORE = 0
 RETRIEVAL_NUM_CHUNK_AFTER = 1
 SUMMARY_MAX_PROMPT_SIZE = 12000 # characters
 ML_RAG_SEGMENT_OVERLAP = 2
-DEFAULT_LLM_MODEL = "meta.llama-3.3-70b-instruct"
+DEFAULT_EMBEDDING_MODEL = "multilingual-e5-small"
+DEFAULT_OCI_GENAI_MODEL = "meta.llama-3.3-70b-instruct"
+DEFAULT_IN_HW_MODEL = "llama3.2-3b-instruct-v1"
 ANSWER_SUMMARY_PROMPT = """
     You are a data summarizer. I will provide you with a question and relevant context data. Your task is to summarize the parts of the context that are most relevant to answering the question.
 
@@ -37,6 +39,4 @@ ANSWER_SUMMARY_PROMPT = """
 # OCI helper constants
 
 CLIENT_TIMEOUT = (10,240)
-FREEFORM_TAG_KEY = "demo"
-FREEFORM_TAG_VALUE = "askme"
 ADDITIONAL_FIELDS_LIST = ["tags"]

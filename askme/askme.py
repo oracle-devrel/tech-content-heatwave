@@ -6,8 +6,8 @@ import os
 from datetime import datetime
 from utils.genai_helper import (get_table_list, create_vector_store, get_connection,
                                 chatbot_interaction, get_chat_history_for_current_session,
-                                filename_to_mysql_table_name, get_llm_list, upload_files_oci,
-                                search_similar_chunks, group_relevant_chunks_by_url,
+                                filename_to_mysql_table_name, get_llm_list, get_default_llm_list,
+                                upload_files_oci, search_similar_chunks, group_relevant_chunks_by_url,
                                 askme_generate_answer, question_based_KB_summarization,
                                 cleanup_vector_table_materials)
 from constants import (DEFAULT_EMPTY_VECTOR_TABLE_NAME, HEATWAVE_MANUALS_VECTOR_TABLE_NAME,
@@ -15,7 +15,7 @@ from constants import (DEFAULT_EMPTY_VECTOR_TABLE_NAME, HEATWAVE_MANUALS_VECTOR_
                        DEFAULT_USER_DATA_PREFIX, FIND_DOC_MAX_CHUNK_TOPK,
                        ANSWER_SUMMARY_MAX_CHUNK_TOPK, ANSWER_SUMMARY_MIN_SIMILARITY_SCORE,
                        ANSWER_MAX_CHUNK_TOPK, RETRIEVAL_NUM_CHUNK_AFTER,
-                       RETRIEVAL_NUM_CHUNKS_BEFORE, ML_RAG_SEGMENT_OVERLAP, DEFAULT_LLM_MODEL)
+                       RETRIEVAL_NUM_CHUNKS_BEFORE, ML_RAG_SEGMENT_OVERLAP)
 from utils.exceptions import AskMEException, BackendConnectionException
 from utils.util import setup_logging
 logger = setup_logging()
@@ -48,10 +48,10 @@ def initialize_session_states():
         st.session_state.askme_knowledge = {}
         st.session_state.askme_knowledge[SCHEMA_NAME] = get_table_list(SCHEMA_NAME)
     if "askme_supported_llm_models" not in st.session_state:
-        st.session_state.askme_supported_llm_models = get_llm_list(SCHEMA_NAME)
+        st.session_state.askme_supported_llm_models = get_llm_list()
     if "askme_selected_llm_model" not in st.session_state:
-        st.session_state.askme_selected_llm_model = DEFAULT_LLM_MODEL if DEFAULT_LLM_MODEL in st.session_state.askme_supported_llm_models else st.session_state.askme_supported_llm_models[0]
-
+        default_llm = get_default_llm_list()
+        st.session_state.askme_selected_llm_model = default_llm if default_llm in st.session_state.askme_supported_llm_models else st.session_state.askme_supported_llm_models[0]
 
     # Initialize chatbot session states
     if "askme_chatbot_show_upload_form" not in st.session_state:

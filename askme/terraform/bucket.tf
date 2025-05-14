@@ -12,7 +12,7 @@ data "oci_objectstorage_namespace" "askme_namespace" {
 
 resource "oci_objectstorage_bucket" "askme_bucket" {
     compartment_id = data.oci_identity_compartment.get_askme_compartment.id
-    name = "${local.compartment_name}-bucket"
+    name = "${local.common_identifier_unique}-bucket"
     namespace = data.oci_objectstorage_namespace.askme_namespace.namespace
     access_type = "NoPublicAccess"
     freeform_tags = {"${local.resource_tag_key}"="${local.resource_tag_value}"}
