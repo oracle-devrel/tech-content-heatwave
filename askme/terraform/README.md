@@ -28,7 +28,7 @@ In the Cloud Shell interface, fetch the tech-content-heatwave repository archive
 
 Command:
 ```
-wget -O tech-content-heatwave.zip -nv https://github.com/oracle-devrel/tech-content-heatwave/archive/refs/heads/tech-content-heatwave_askme.zip
+wget -O tech-content-heatwave.zip -nv https://github.com/oracle-devrel/tech-content-heatwave/archive/refs/heads/tech-content-heatwave_askme_flexible.zip
 ```
 
 ## Step 3: Unzip the archive
